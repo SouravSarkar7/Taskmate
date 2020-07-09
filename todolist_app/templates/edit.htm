@@ -1,0 +1,31 @@
+{% extends 'base.htm' %}
+
+{% block title %}
+<title>Edit task</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+   <br>
+
+   if(% if task_obj.manage==request.user %)
+      <form method="POST">
+
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="text" class="form-control" name="task" placeholder="{{task_obj.task}}" value="{{task_obj.task}}">
+            <input type="hidden"  name="done"  value="{{task_obj.done}}">
+          
+          </div>
+        
+          <button type="submit" class="btn btn-primary">Update Task</button>
+        </form>
+    {% else %}
+
+    {% endif %}
+    <p>Access Restricted,You Are Not Allowed!</p>
+
+  </div>
+{% endblock content %}
+
